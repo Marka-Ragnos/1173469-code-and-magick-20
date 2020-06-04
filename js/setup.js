@@ -20,13 +20,6 @@ function getRandomArray(lengthArray) {
   return Math.floor(Math.random() * Math.floor(lengthArray));
 }
 
-function getRandomWizard(arrayNames, arraySurnames, arrayCoatColor, arrayEyesColor) {
-  return {
-    name: arrayNames[getRandomArray(arrayNames.length)] + ' ' + arraySurnames[getRandomArray(arraySurnames.length)],
-    coatColor: arrayCoatColor[getRandomArray(arrayCoatColor.length)],
-    eyesColor: arrayEyesColor[getRandomArray(arrayEyesColor.length)]
-  };
-}
 
 function renderWizard(wizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
@@ -38,12 +31,20 @@ function renderWizard(wizard) {
   return wizardElement;
 }
 
-var wizards = [
-  getRandomWizard(WIZARD_NAMES, WIZARD_SURNAMES, WIZARD_COAT_COLOR, WIZARD_EYES_COLOR),
-  getRandomWizard(WIZARD_NAMES, WIZARD_SURNAMES, WIZARD_COAT_COLOR, WIZARD_EYES_COLOR),
-  getRandomWizard(WIZARD_NAMES, WIZARD_SURNAMES, WIZARD_COAT_COLOR, WIZARD_EYES_COLOR),
-  getRandomWizard(WIZARD_NAMES, WIZARD_SURNAMES, WIZARD_COAT_COLOR, WIZARD_EYES_COLOR),
-];
+function getRandomWizards(quantityWizards) {
+  var wizards = [];
+
+  for (var i = 0; i < quantityWizards; i++) {
+    wizards[i] = {
+      name: WIZARD_NAMES[getRandomArray(WIZARD_NAMES.length)] + ' ' + WIZARD_SURNAMES[getRandomArray(WIZARD_SURNAMES.length)],
+      coatColor: WIZARD_COAT_COLOR[getRandomArray(WIZARD_COAT_COLOR.length)],
+      eyesColor: WIZARD_EYES_COLOR[getRandomArray(WIZARD_EYES_COLOR.length)]
+    };
+  }
+  return wizards;
+}
+
+var wizards = getRandomWizards(4);
 
 function getInsertWizards(quantityWizards) {
   for (var i = 0; i < quantityWizards; i++) {
