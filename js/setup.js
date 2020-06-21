@@ -21,6 +21,7 @@
   function closePopup() {
     setup.classList.add('hidden');
     document.removeEventListener('keydown', onPopupEscPress);
+    setup.style = '';
   }
 
   setupOpen.addEventListener('click', function () {
