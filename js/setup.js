@@ -1,10 +1,9 @@
 'use strict';
 (function () {
 
-  var setup = document.querySelector('.setup');
   var setupOpen = document.querySelector('.setup-open');
-  var setupClose = setup.querySelector('.setup-close');
-  var setupUserName = setup.querySelector('.setup-user-name');
+  var setupClose = document.querySelector('.setup-close');
+  var setupUserName = document.querySelector('.setup-user-name');
 
   function onPopupEscPress(evt) {
     if (evt.key === 'Escape' && setupUserName !== document.activeElement) {
@@ -14,14 +13,14 @@
   }
 
   function openPopup() {
-    setup.classList.remove('hidden');
+    window.util.setup.classList.remove('hidden');
     document.addEventListener('keydown', onPopupEscPress);
   }
 
   function closePopup() {
-    setup.classList.add('hidden');
+    window.util.setup.classList.add('hidden');
     document.removeEventListener('keydown', onPopupEscPress);
-    setup.style = '';
+    window.util.setup.style = '';
   }
 
   setupOpen.addEventListener('click', function () {

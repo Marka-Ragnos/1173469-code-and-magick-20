@@ -1,9 +1,6 @@
 'use strict';
 
 (function () {
-
-  // var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
-  // var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
   var WIZARD_COAT_COLOR = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
   var WIZARD_EYES_COLOR = ['black', 'red', 'blue', 'yellow', 'green'];
   var WIZARD_FIREBALL_COLOR = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
@@ -11,15 +8,10 @@
   var similarListElement = document.querySelector('.setup-similar-list');
   var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
   var MAX_SIMILAR_WIZARD_COUNT = 4;
-  // var wizards = getRandomWizards(4);
-  // getInsertWizards(4);
+  var setup = document.querySelector('.setup');
+  var setupForm = setup.querySelector('.setup-wizard-form');
+  var setupFormBtn = setupForm.querySelector('.setup-submit');
 
-  window.util = {
-    WIZARD_COAT_COLOR: WIZARD_COAT_COLOR,
-    WIZARD_EYES_COLOR: WIZARD_EYES_COLOR,
-    WIZARD_FIREBALL_COLOR: WIZARD_FIREBALL_COLOR,
-    getRandomArray: getRandomArray
-  };
 
   function getRandomArray(lengthArray) {
     return Math.floor(Math.random() * Math.floor(lengthArray));
@@ -34,25 +26,16 @@
 
   function renderWizard(wizard) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
-
     wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
-    wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
-    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
-
+    wizardElement.querySelector('.wizard-coat').style.fill = wizard.colorCoat;
+    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.colorEyes;
     return wizardElement;
   }
 
-  // ===============  Учебный проект: pimp my mage  ====================== //
-
-  var setup = document.querySelector('.setup');
-  var setupForm = setup.querySelector('.setup-wizard-form');
-  var setupFormBtn = setupForm.querySelector('.setup-submit');
-
-
-  var sendForm = function () {
+  function sendForm() {
     setup.classList.add('hidden');
     setupFormBtn.disabled = false;
-  };
+  }
 
   function showError(errorMessage) {
     createElementError(errorMessage);
@@ -83,8 +66,16 @@
   }
 
   setupForm.addEventListener('submit', onFormSubmit);
+
   window.backend.load(createSimilarWizards, showError);
 
+  window.util = {
+    WIZARD_COAT_COLOR: WIZARD_COAT_COLOR,
+    WIZARD_EYES_COLOR: WIZARD_EYES_COLOR,
+    WIZARD_FIREBALL_COLOR: WIZARD_FIREBALL_COLOR,
+    getRandomArray: getRandomArray,
+    setup: setup,
+  };
   // function getRandomWizards(quantityWizards) {
   //   var wizardArray = [];
 
