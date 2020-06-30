@@ -36,10 +36,6 @@
   setupForm.addEventListener('submit', onFormSubmit);
 
   window.util = {
-    // WIZARD_COAT_COLOR: WIZARD_COAT_COLOR,
-    // WIZARD_EYES_COLOR: WIZARD_EYES_COLOR,
-    // WIZARD_FIREBALL_COLOR: WIZARD_FIREBALL_COLOR,
-    // getRandomArray: getRandomArray,
     setup: setup,
     showError: showError,
   };

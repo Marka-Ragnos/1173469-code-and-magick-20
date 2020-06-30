@@ -17,7 +17,6 @@
   var MAX_SIMILAR_WIZARD_COUNT = 4;
   window.similarWizards = [];
 
-
   function getRandomArray(lengthArray) {
     return Math.floor(Math.random() * Math.floor(lengthArray));
   }
@@ -75,7 +74,7 @@
   }
 
   function createSimilarWizards(wizards) {
-    window.similarWizards = wizards;
+    window.similarWizards = wizards.slice(0);
     window.similarWizards.sort(sortWizards);
     getInsertWizards(window.similarWizards);
     setup.querySelector('.setup-similar').classList.remove('hidden');
@@ -85,11 +84,11 @@
     for (var i = 0; i < MAX_SIMILAR_WIZARD_COUNT; i++) {
       fragment.appendChild(renderWizard(wizards[i]));
     }
+    similarListElement.innerHTML = '';
     return similarListElement.appendChild(fragment);
   }
 
   function renderWizard(wizard) {
-    document.querySelectorAll('.setup-similar-item').remove(); // тут не как в домашке, ничего лучше не придумал как удалять из дом элемента перед рендерингом, но баги пошли
     var wizardElement = similarWizardTemplate.cloneNode(true);
     wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
     wizardElement.querySelector('.wizard-coat').style.fill = wizard.colorCoat;

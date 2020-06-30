@@ -13,7 +13,6 @@
     ENTERNAL_ERROR: 500
   };
 
-
   function createXHR(onLoad, onError) {
     var xhr = new XMLHttpRequest();
 
